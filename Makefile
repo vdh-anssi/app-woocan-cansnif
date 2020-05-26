@@ -2,8 +2,8 @@
 # about the application name and path
 ###################################################################
 
-APP_NAME ?=canspy
-DIR_NAME = canspy
+APP_NAME ?=cansnif
+DIR_NAME = cansnif
 
 PROJ_FILES = ../../
 BIN_NAME = $(APP_NAME).bin
@@ -29,7 +29,7 @@ CFLAGS += -Isrc/ -MMD -MP
 ###################################################################
 
 LDFLAGS += $(EXTRA_LDFLAGS) -L$(APP_BUILD_DIR)
-LD_LIBS += -lstd -lcan -lusart
+LD_LIBS += -lstd -lusart
 
 ###################################################################
 # okay let's list our source files and generated files now
@@ -69,7 +69,7 @@ $(LIBDEP):
 
 
 # drivers dependencies
-SOCDRVDEP := $(BUILD_DIR)/drivers/libcan/libcan.a
+SOCDRVDEP := $(BUILD_DIR)/drivers/libusart/libusart.a
 
 socdrvdep: $(SOCDRVDEP)
 

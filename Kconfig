@@ -1,23 +1,24 @@
-menu "CANSPY custom app"
+menu "CANSNIF custom app"
 
-config APP_CANSPY
-  bool "CANSPY App"
+config APP_CANSNIF
+  bool "CANSNIF App"
   depends on STM32F4
   default y
   ---help---
-    Say y if you want to embbed CANSPY custom application.
+    Say y if you want to embbed CANSNIF custom application.
 
-config APP_CANSPY_FW
-  bool "CANSPY App for firmware mode"
+config APP_CANSNIF_FW
+  bool "CANSNIF App for firmware mode"
+  depends on APP_CANSNIF
   depends on APP_CANSPY
   depends on STM32F4
   default y
   ---help---
     Say y if you want to embbed User1 custom application in firmware.
 
-config APP_CANSPY_NUMSLOTS
+config APP_CANSNIF_NUMSLOTS
   int "Number of required slots"
-  depends on APP_CANSPY
+  depends on APP_CANSNIF
   default 1
   ---help---
     specify the number of slots required by the application text and data/bss.
@@ -27,9 +28,9 @@ config APP_CANSPY_NUMSLOTS
     This choice has an impact on the total number of applications that can be loaded
     in the firmware.
 
-config APP_CANSPY_STACKSIZE
+config APP_CANSNIF_STACKSIZE
   int "Stack size"
-  depends on APP_CANSPY
+  depends on APP_CANSNIF
   default 8192
   ---help---
     Specify the application stack size, in bytes. By default, set to 8192
@@ -37,27 +38,27 @@ config APP_CANSPY_STACKSIZE
     the stack can be bigger or smaller.
     
 
-config APP_CANSPY_SHM
-  bool "CANSPY requires shared memory to communicate with others"
-  depends on APP_CANSPY
+config APP_CANSNIF_SHM
+  bool "CANSNIF requires shared memory to communicate with others"
+  depends on APP_CANSNIF
   default n
   ---help---
-    say YES if CANSPY requires shared memory to communicate with others
+    say YES if CANSNIF requires shared memory to communicate with others
 
 
 menu "Permissions"
-    visible if APP_CANSPY
+    visible if APP_CANSNIF
 
 menu "Devices"
 
-config APP_CANSPY_PERM_DEV_DMA
+config APP_CANSNIF_PERM_DEV_DMA
     bool "App has capacity to register DMA streams"
     default n
     ---help---
     if no, the application can't declare a DMA. If y, the application
     is able to require one or more secure DMA stream(s).
 
-config APP_CANSPY_PERM_DEV_CRYPTO
+config APP_CANSNIF_PERM_DEV_CRYPTO
     int "App can interact with HW cryptographic module"
     default 0
     range 0 2
@@ -68,18 +69,18 @@ config APP_CANSPY_PERM_DEV_CRYPTO
     If 2, the application is able to configure (inject keys) and use
     a HW cryp module.
 
-config APP_CANSPY_PERM_DEV_BUSES
+config APP_CANSNIF_PERM_DEV_BUSES
     bool "App has capacity to use buses (SPI, I2C, USART...)"
-    default n
+    default y
     ---help---
     If n, the application can't access any buses (I2C, SPI, USART).
     If y, the application can require a bus mapping.
 
-config APP_CANSPY_PERM_DEV_EXTI
+config APP_CANSNIF_PERM_DEV_EXTI
     bool "App can use EXTI or GPIO driven external interrupts"
     default n
 
-config APP_CANSPY_PERM_DEV_TIM
+config APP_CANSNIF_PERM_DEV_TIM
     bool "App can register a hardware timer"
     default n
     ---help---
@@ -91,7 +92,7 @@ endmenu
 
 menu "Time"
 
-config APP_CANSPY_PERM_TIM_GETCYCLES
+config APP_CANSNIF_PERM_TIM_GETCYCLES
     int "App has capacity to get current timestamp from kernel"
     default 0
     range 0 3
@@ -105,7 +106,7 @@ endmenu
 
 menu "Tasking"
 
-config APP_CANSPY_PERM_TSK_FISR
+config APP_CANSNIF_PERM_TSK_FISR
     bool "App is allowed to request main thread execution after ISR"
     default n
     ---help---
@@ -114,23 +115,23 @@ config APP_CANSPY_PERM_TSK_FISR
     structure in device_t struct, using the IRQ_ISR_FORCE_MAINTHREAD value.
     If n, this field can't be set to this value.
 
-config APP_CANSPY_PERM_TSK_FIPC
+config APP_CANSNIF_PERM_TSK_FIPC
     bool "App is allowed to request peer execution on synchronous send IPC"
     default n
     ---help---
     If y, the application is able to request peer thread execution
     when sending synchronous IPC.
 
-config APP_CANSPY_PERM_TSK_RESET
+config APP_CANSNIF_PERM_TSK_RESET
     bool "App is allowed to request a board software reset"
-    default n
+    default y
     ---help---
     If y, the application is able to request a MCU reset. This is usefull
     only if the application is handling events that require urgent reactivity
     implying board reset.
 
 
-config APP_CANSPY_PERM_TSK_UPGRADE
+config APP_CANSNIF_PERM_TSK_UPGRADE
     bool "App is allowed to upgrade the firmware"
     default n
     ---help---
@@ -142,7 +143,7 @@ endmenu
 
 menu "Memory management"
 
-config APP_CANSPY_PERM_MEM_DYNAMIC_MAP
+config APP_CANSNIF_PERM_MEM_DYNAMIC_MAP
     bool "App is allow to declare MAP_VOLUNTARY devices"
     default n
     ---help---
