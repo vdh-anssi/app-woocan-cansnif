@@ -117,7 +117,7 @@ int _main(uint32_t my_id)
           printf("At least one frame was lost.\n");
         }
 
-        logsize_t size;
+        logsize_t size = 128;
         char text[128];
 
         /* if there is a frame to collect, let's do it */
@@ -134,6 +134,7 @@ int _main(uint32_t my_id)
               break;
           case SYS_E_DONE:
              /* 1. Mirror the frame to the serial port */
+              text[size] = 0; /* Needed by printf at least */
               usart_write(usart_config.usart, text, size);
               break;
           case SYS_E_BUSY:
