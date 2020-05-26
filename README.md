@@ -1,1 +1,1 @@
-# app-woocan-cansnif
+# WooCAN application, CAN sniffer task.
