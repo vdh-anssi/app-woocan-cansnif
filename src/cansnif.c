@@ -117,10 +117,11 @@ int _main(uint32_t my_id)
           printf("At least one frame was lost.\n");
         }
 
-        logsize_t size = 128;
+        logsize_t size;
         char text[128];
 
         /* if there is a frame to collect, let's do it */
+        size = sizeof(text);
         sret = sys_ipc(IPC_RECV_ASYNC, &spy_id, &size, text);
         switch (sret) {
           case SYS_E_DENIED:
