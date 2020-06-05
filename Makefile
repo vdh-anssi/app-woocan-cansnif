@@ -29,7 +29,7 @@ CFLAGS += -Isrc/ -MMD -MP
 ###################################################################
 
 LDFLAGS += $(EXTRA_LDFLAGS) -L$(APP_BUILD_DIR)
-LD_LIBS += -lstd -lusart
+LD_LIBS += -lstd -lusart -lconsole
 
 ###################################################################
 # okay let's list our source files and generated files now
