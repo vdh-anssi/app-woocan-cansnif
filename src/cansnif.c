@@ -18,7 +18,6 @@
 #include "libc/types.h"
 #include "libc/stdio.h"
 #include "libc/string.h"
-
 #include "libconsole.h"
 
 /*******************************************************************************
@@ -102,7 +101,7 @@ int _main(uint32_t my_id)
 
         /* if there is a frame to collect, let's do it */
         size = sizeof(text);
-        sret = sys_ipc(IPC_RECV_ASYNC, &spy_id, &size, text);
+        sret = sys_ipc(IPC_RECV_SYNC, &spy_id, &size, text);
         switch (sret) {
           case SYS_E_DENIED:
               printf("is not allowed to communicate with CANSPY\n");
