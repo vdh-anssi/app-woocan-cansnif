@@ -105,6 +105,7 @@ int _main(uint32_t my_id)
         switch (sret) {
           case SYS_E_DENIED:
               printf("is not allowed to communicate with CANSPY\n");
+              console_log("CANsnif is not allowed to communicate with CANspy\n");
               break;
           case SYS_E_INVAL:
               printf("IPC arguments are invalid\n");
