@@ -116,7 +116,7 @@ int _main(uint32_t my_id)
           case SYS_E_DONE:
              /* 1. Mirror the frame to the serial port */
               text[size] = 0; /* Needed by printf at least */
-              console_log("%s\n", text);
+              console_log("%s", text);
               break;
           case SYS_E_BUSY:
           /* Do nothing */
