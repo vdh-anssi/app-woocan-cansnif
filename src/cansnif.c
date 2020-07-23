@@ -43,7 +43,7 @@ int _main(uint32_t my_id)
 
     /* Declare the console to the kernel */
     mbed_error_t mbed_err;
-    mbed_err = console_early_init(1, 115200);
+    mbed_err = console_early_init(4, 115200);
     if (mbed_err) {
         printf("Error: in console early init: %d\n", mbed_err);
     } else {
@@ -94,7 +94,7 @@ int _main(uint32_t my_id)
         char text[128];
 
         if (just_once) {
-          console_log("CAN sniffer is ready to transmit\n");
+          //console_log("CAN sniffer is ready to transmit\n");
           printf("says 'I am ready to transmit !'\n");
           just_once = false;
         }
